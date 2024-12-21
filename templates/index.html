@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-center">Liste de taches</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if tasks %}
+    {% for task in tasks %}
+    <tr></tr>
+    <td><a href="{{ url_for('update',id=task.id)}}">{{ task.title }}</a></td>
+    <td>{{ task.created_at }}</td>
+    <td><a href="{{ url_for('delete',id=task.id)}}" class="btn btn-danger">Supprimer</a>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <p>Aucun tache</p>
+    {% endif %}
+    </tbody>
+</table>
+{% include 'partials/add_task.html' %}
+{% endblock content %}
